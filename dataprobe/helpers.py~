@@ -1,0 +1,3 @@
+def colorize(result):
+    color = 'red' if result == 'Violated' else 'Green'
+    return 'color: %s' % color

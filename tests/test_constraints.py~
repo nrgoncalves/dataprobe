@@ -1,0 +1,108 @@
+import pytest
+import pandas as pd
+import dataprobe as dp
+from dataprobe.correspondence import OneToOne, OneToMany, ManyToOne
+from dataprobe.cov import Monotonic
+from dataprobe.values import Bounded, Positive, Negative
+from dataprobe.values import ElementOf, Contains, Match
+from dataprobe.types import Type
+
+
+def generate_df(data_dict):
+    return pd.DataFrame(data=data_dict)
+
+
+# probe.constrain(ElementOf('gender', collection=['M', 'F']))
+# probe.constrain(OneToMany(['author', 'book']))
+# probe.constrain(ManyToOne(['author', 'gender']))
+# probe.constrain(OneToOne(['age', 'years_to_retire']))
+# probe.constrain(Contains('book', pattern='0'))
+
+# probe.constrain(Type('years_to_retire', dtype=int))
+# probe.constrain(Monotonic('n_pages'))
+# probe.summary()
+# r = probe.run(df)
+# print(r)
+
+
+class TestBounded(object):
+
+    def test_lower_bound(self):
+        c = Bounded('age', lower=0)
+
+        bdf = generate_df({'name': [0, 1, 23, 21, 20, 19],
+                           'age': [20, 1, 31, 32, 2, -1]})
+
+        gdf = generate_df({'name': [0, 1, 23, 21, 20, 19],
+                           'age': [20, 1, 31, 32, 2, 1]})
+
+        assert (c.is_violated(bdf) & ~c.is_violated(gdf))
+
+    def test_upper_bound(self):
+        c = Bounded('hours_per_day', upper=24)
+
+        bdf = generate_df({'hours_per_day': [0, 1, 25, 21, 20, 19],
+                           'x': [1, 2, 3, 4, 5, 6]})
+
+        gdf = generate_df({'hours_per_day': [0, 1, 23, 21, 20, 19],
+                           'x': [1, 2, 3, 4, 5, 6]})
+
+        assert (c.is_violated(bdf) & ~c.is_violated(gdf))
+
+    def test_both_bounds(self):
+        c = Bounded('hours_per_day', upper=24, lower=0)
+
+        bdf = generate_df({'hours_per_day': [-2, 1, 26, 21, 20, 19],
+                           'x': [1, 2, 3, 4, 5, 6]})
+
+        gdf = generate_df({'hours_per_day': [0, 1, 23, 21, 20, 19],
+                           'x': [1, 2, 3, 4, 5, 6]})
+
+        assert (c.is_violated(bdf) & ~c.is_violated(gdf))
+
+    def test_negative(self):
+        c = Negative('x')
+
+        bdf = generate_df({'x': [-1, -1, 23, -21, -20, 19],
+                           'age': [20, 1, 31, 32, 2, 10]})
+
+        gdf = generate_df({'x': [-1, -2, -2, -4, -2, -19],
+                           'age': [20, 1, 31, 32, 2, 1]})
+
+        assert (c.is_violated(bdf) & ~c.is_violated(gdf))
+
+    def test_positive(self):
+        c = Positive('age')
+
+        bdf = generate_df({'x': [-1, -1, 23, -21, -20, 19],
+                           'age': [20, 1, 31, 32, 2, 10]})
+
+        gdf = generate_df({'x': [-1, -2, -2, -4, -2, -19],
+                           'age': [20, 1, 31, 32, 2, 1]})
+
+        assert (c.is_violated(bdf) & ~c.is_violated(gdf))
+
+
+class TestMatch(object):
+
+    def test_full_match(self):
+        c = Match('test_names', pattern='test_.')
+        bdf = generate_df({'test_names': ['test_1',
+                                          'test_probe', 23, -21, -20, 19],
+                           'x': [20, 1, 31, 32, 2, 10]})
+
+        gdf = generate_df({'x': [-1, -2, -2, -4, -2, -19],
+                           'age': [20, 1, 31, 32, 2, 1]})
+
+        assert (c.is_violated(bdf) & ~c.is_violated(gdf))
+
+    def test_partial_match(self):
+        c = Match('test_names', pattern='test_.', regexp=True)
+        pass
+
+    def test_no_match(self):
+        c = 
+        pass
+
+    
+    # probe.constrain()

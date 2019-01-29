@@ -1,0 +1,20 @@
+from .constraints import Constraint
+
+
+class TypeConstraint(Constraint):
+    pass
+
+
+class Type(TypeConstraint):
+    '''Check if all elements in column are of a particular type.'''
+    def is_violated(self, data):
+        vflag = list(map(lambda x: type(x) != self.kwargs['dtype'],
+                         data[self.field]))
+
+        result = any(vflag)
+        if result:
+            violations = data[self.field][vflag]
+        else:
+            violations = []
+
+        return (result, violations)

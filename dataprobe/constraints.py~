@@ -1,0 +1,47 @@
+import abc
+
+
+class Constraint(abc.ABC):
+    def __init__(self, field, **kwargs):
+        self.field = field
+        self.kwargs = kwargs
+
+    def __str__(self):
+        pass
+
+    def __repr__(self):
+        kw = ', '.join('%s=%r' % x for x in self.kwargs.items())
+        return f'{self.__class__.__name__}({self.field}, {kw})'
+
+    def to_dict(self):
+        kw = ', '.join('%s=%r' % x for x in self.kwargs.items())
+
+        d = {'Constraint': self.__class__.__name__,
+             'Field': self.field,
+             'Args': kw.replace("'", "").replace("<", "").replace(">", "")}
+        return d
+
+    def valid(self):
+        """Check if constrained fields are valid."""
+        pass
+
+    @abc.abstractmethod
+    def violated(self, data):
+        '''Check if constraint is violated by data.
+
+        Args:
+          data (pd.DataFrame)
+
+        Returns:
+          Boolean expressing constraint violation.
+        '''
+        pass
+
+
+# CORRESPONDENCE CONSTRAINT
+
+
+# COVARIATE / RELATIONSHIP CONSTRAINT
+
+
+# SET CONSTRAINT

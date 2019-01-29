@@ -1,0 +1,51 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/nrg/dataprobe/dataprobe.org
+
+
+* DONE Format constraints
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-01-24 Thu 14:23
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+e.g. ensure field adheres to format 'LNNNNL'
+
+* DONE modify match to compile regexp if specified in input
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-01-24 Thu 14:23
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Match, Contains, Startswith forward pandas-like args
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-01-24 Thu 14:25
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE why is the summary not displaying aa a pandas df?
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-01-24 Thu 14:25
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE change probe class such that data is provided with .run(_) as opposed to probe instantiation
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-01-24 Thu 14:25
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:

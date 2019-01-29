@@ -1,0 +1,12 @@
+from .constraints import Constraint
+import numpy as np
+
+
+class VariationConstraint(Constraint):
+    pass
+
+
+class Monotonic(VariationConstraint):
+    def violated(self, data) -> bool:
+        dx = data[self.field].sort_index().diff().values
+        return len(np.unique(np.sign(dx[1:]))) > 1

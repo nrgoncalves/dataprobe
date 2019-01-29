@@ -1,0 +1,67 @@
+.. dataprobe documentation master file, created by
+   sphinx-quickstart on Mon Jan 28 14:13:52 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+DataProbe: Tests for Data
+=========================
+
+DataProbe is a library for testing your data. Its use is best illustrated with an example::
+
+  import pandas as pd
+  import dataprobe as dp
+  from dataprobe.correspondence import OneToMany
+  from dataprobe.values import Bounded
+  
+  # sample data
+  df = pd.DataFrame(data={'author': ['L. Tolstoy', 'M. Cervantes',
+                                     'L. Tolstoy', 'F. Dostoyevsky',
+                                     'C. Brontë ', 'J. Austen'],
+                          'book': ['Anna Karenina', 'Don Quixote',
+                                   'War and Peace', 'The Brothers Karamazov',
+                                   'Jane Eyre', 'Emma'],
+                          'n_pages': [864, 1605, 1225, 840, 507, 544]})
+  
+  probe = dp.DataProbe()
+  probe.constrain(Bounded('n_pages', lower=0))
+  probe.constrain(OneToMany(['author', 'book']))
+  probe.summary
+  test = probe.run(df)
+  test.summary
+  test.details
+  
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+	     
+Probe
+=====
+.. automodule:: dataprobe.probe
+   :members:
+
+
+Constraints
+===========
+.. automodule:: dataprobe.constraints
+   :members:
+
+
+Correspondence
+==============
+.. automodule:: dataprobe.correspondence
+   :members:
+
+
+Values
+======
+.. automodule:: dataprobe.values
+   :members:
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

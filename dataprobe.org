@@ -1,0 +1,66 @@
+* Todo
+** WAITING Return more information on violated constraints (e.g. percentage of data violating the constraint)
+** TODO Should provide some metrics, e.g. about 90% of your data does not agree with bla bla constraints 
+** TODO data tests coverage
+This is about telling the user the percentage of the dataframe that has been tested
+** TODO DataTest class should store some basic information about the data that has been processed
+I should probably get a hash for the data and store some metadata about the dataframe.
+should that hash be store in DataProbe as well?
+** TODO Add proper data generation for tests
+** TODO should make the required arguments for a particular class more obvious 
+I am thinking of having a method that ingests kwargs and stores them into properties
+Or alternatively -- specify them as properties in the first place.
+dataclasses are a nice way to handle this, but not sure if people are running Python 3.7
+** TODO constrain should accept multiple inputs (e.g. a list of contraints)
+** TODO save probe such that it can be shared with others
+** TODO custom constraints
+implement a class that extends ValueConstraint, CorrespondenceConstraint, etc as appropriate
+** TODO probabilistic value constraints
+e.g. 
+- this value comes from a Normal with bla bla
+- this value is between bla and bla with 95% confidence
+** TODO Text constraints (more generally than just strings)
+This would be interesting for getting into the NLP area -- but has to provide some value.
+** TODO Introduce timing decorators to check for O()
+** TODO string parsing would probably be a more elegant way of doing things
+e.g. OneToMany('EquipmentID->JobNumber') but this might be a pain if columns have spaces (it is a potential source of headaches I think)
+alternatively, might be best to use a dict where key is the origin and value is the destination
+** TODO steps towards publishing on pypi
+https://realpython.com/pypi-publish-python-package/#testing-your-package
+https://medium.com/@mikkokotila/deploying-python-packages-to-pypi-with-travis-works-9a6597781556
+https://docs.travis-ci.com/user/deployment/pypi/
+https://docs.travis-ci.com/user/languages/python/
+* Use cases
+
+** DONE value checking
+Examples:
+- values in column 'length' must be strictly positive
+- values in column 'length' must be positive and float (R+)
+- values in column 'bla' can only take values ['A', 'B', 'C']
+- values in column 'x' must start with 'B'
+
+** DONE Type checking
+
+
+** WAITING Entity checking
+(not sure this really adds much)
+Treating each row as an object, an ensure that the object is properly defined and its properties are met.
+Check that every row of a df meets certain criteria
+- check that row['in'] - row['out'] = row['diff']
+- (...) 
+- check that rows are not duplicate
+
+** TODO Relationships
+- column 'a' is monotonically increasing with column 'b' 
+- column 'a' is monotonically decreasing with column 'b'
+- column 'a' is equal f('b')
+
+** DONE Correspondence
+- column 'a' meets one to one correspondence with column 'b'
+- column 'a' meets one to many correspondence with column 'b'
+- column 'b' meets many to many correspondence with column 'a' (does this make sense checking?)
+
+** Set
+- set(column 'a') in df1 is superset of column 'b' in df2
+- set(column 'b') == set(column 'a')
+- set(column 'a').intersection(set(column 'b')) is EmptySet
