@@ -6,6 +6,9 @@
 DataProbe: Tests for Data
 =========================
 
+.. image:: https://travis-ci.org/nrgoncalves/dataprobe.svg?branch=master
+    :target: https://travis-ci.org/nrgoncalves/dataprobe
+
 DataProbe is a simple library for testing your data.
 
 Here is a quick demo. Let's generate some data: ::
