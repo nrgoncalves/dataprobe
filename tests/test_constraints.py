@@ -6,10 +6,23 @@ from dataprobe.cov import Monotonic
 from dataprobe.values import Bounded, Positive, Negative
 from dataprobe.values import ElementOf, Contains, Match
 from dataprobe.types import Type
+from dataprobe.helpers import compute_statistics
 
 
 def generate_df(data_dict):
     return pd.DataFrame(data=data_dict)
+
+
+class TestHelpers(object):
+    def test_compute_statistics(self):
+        x = ['a', 'b', 'c']
+        y = ['b', 'a']
+        assert compute_statistics(x, y) == 2
+
+    def test_compute_statistics_empty(self):
+        x = []
+        y = []
+        assert compute_statistics(x, y) == 0
 
 
 class TestBounded(object):
