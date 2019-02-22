@@ -13,18 +13,6 @@ def generate_df(data_dict):
     return pd.DataFrame(data=data_dict)
 
 
-class TestHelpers(object):
-    def test_compute_statistics(self):
-        x = ['a', 'b', 'c']
-        y = ['b', 'a']
-        assert compute_statistics(x, y) == 2
-
-    def test_compute_statistics_empty(self):
-        x = []
-        y = []
-        assert compute_statistics(x, y) == 0
-
-
 class TestBounded(object):
 
     def test_lower_bound(self):
@@ -96,10 +84,10 @@ class TestMatch(object):
                                           'test_full',
                                           'test_da'],
                            'x': [20, 1, 31, 32, 2, 10]})
-    
+
         assert (c.is_violated(bdf)[0] & ~c.is_violated(gdf)[0])
 
-        
+
 class TestContains(object):
     def test_contains(self):
         c = Contains('test_names', pattern='test')
@@ -117,7 +105,7 @@ class TestContains(object):
                                           '__1test_full',
                                           '1_test_da'],
                            'x': [20, 1, 31, 32, 2, 10]})
-    
+
         assert (c.is_violated(bdf)[0] & ~c.is_violated(gdf)[0])
 
 
@@ -138,17 +126,5 @@ class TestElementOf(object):
                                      'B',
                                      'R'],
                            'x': [20, 1, 31, 32, 2, 10]})
-    
+
         assert (c.is_violated(bdf)[0] & ~c.is_violated(gdf)[0])
-
-
-# probe.constrain(OneToMany(['author', 'book']))
-# probe.constrain(ManyToOne(['author', 'gender']))
-# probe.constrain(OneToOne(['age', 'years_to_retire']))
-# probe.constrain(Type('years_to_retire', dtype=int))
-# probe.constrain(Monotonic('n_pages'))
-# probe.summary()
-# r = probe.run(df)[0]
-# print(r)
-
-
