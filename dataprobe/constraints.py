@@ -14,8 +14,10 @@ class Constraint(abc.ABC):
         kw = ', '.join('%s=%r' % x for x in self.kwargs.items())
         return f'{self.__class__.__name__}({self.field}, {kw})'
 
+    def __hash__(self):
+        return hash(tuple(self.to_dict().items()))
+
     def to_dict(self):
-        # [TODO] couldn't I just override the __dict__ method here?
         kw = ', '.join('%s=%r' % x for x in self.kwargs.items())
 
         d = {'Constraint': self.__class__.__name__,
