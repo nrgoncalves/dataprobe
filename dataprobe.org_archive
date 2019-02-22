@@ -71,3 +71,51 @@ I am not sure: in a way, I think this should not be bound to Constraints
 I see constraints (and probes) as being a stateless thing that we can share with others
 So, I would argue that we would need to introduce another class, namely Test or so, that would
 store all the information related to the application of a probe/constraints to a particular dataset.
+
+* DONE Remove setters in DataTest? I would like that to be immutable.
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-01 Fri 15:44
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Return more information on violated constraints (e.g. percentage of data violating the constraint)
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-01 Fri 15:44
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Should provide some metrics, e.g. about 90% of your data does not agree with bla bla constraints 
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-01 Fri 15:45
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* TODO data tests coverage
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-01 Fri 15:45
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: TODO
+  :END:
+This is about telling the user the percentage of the dataframe that has been tested
+
+* DONE DataTest class should store some basic information about the data that has been processed
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-01 Fri 16:37
+  :ARCHIVE_FILE: ~/dataprobe/dataprobe.org
+  :ARCHIVE_OLPATH: Todo
+  :ARCHIVE_CATEGORY: dataprobe
+  :ARCHIVE_TODO: DONE
+  :END:
+I should probably get a hash for the data and store some metadata about the dataframe.
+should that hash be store in DataProbe as well?
